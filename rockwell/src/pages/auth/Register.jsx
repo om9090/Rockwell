@@ -2,8 +2,11 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { UserContext } from '../../context/UserContext'
+import { useContext } from 'react'
 
 const Register = () => {
+    const { userInfo, setUserInfo } = useContext(UserContext)
     const navigate = useNavigate();
 
     const handleSubmit =async (e) => {
@@ -17,9 +20,9 @@ const Register = () => {
         }
         try {
             const response = await axios.post('https://rockwell-project.onrender.com/auth/signup', data);
-            console.log(response);
             if (response.status === 200) {
                 // Redirect to home page after successful registration
+                setUserInfo(response.data.response);
                 toast.success("Registered Successfully");
                 navigate('/home');
             }
@@ -28,10 +31,10 @@ const Register = () => {
         }
     }
     return (
-        <div className='mx-auto h-screen p-8 flex items-start justify-center'>
-            <div className='w-full max-w-md p-8 rounded-lg bg-white shadow-md'>
-                <h1 className='text-3xl font-bold mb-6 text-gray-800'>Create an Account</h1>
-                <form className='space-y-4' onSubmit={handleSubmit}>
+        <div className='container p-8 flex items-start justify-center'>
+            <div className='w-full max-w-md p-6 rounded-lg bg-white border'>
+                <h1 className='text-2xl font-bold mb-6 text-gray-800'>Create an Account</h1>
+                <form className='space-y-3' onSubmit={handleSubmit}>
                     <div>
                         <label className='block text-sm font-medium text-gray-600'>
                             Full Name
@@ -56,6 +59,7 @@ const Register = () => {
                             className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
                         />
                     </div>
+
                     <div>
                         <label className='block text-sm font-medium text-gray-600'>
                             Password
@@ -87,10 +91,10 @@ const Register = () => {
                         Register
                     </button>
                 </form>
-                <hr className='my-4 border-gray-300' />
+                {/* <hr className='my-4 border-gray-300' />
                 <div className='flex justify-between'>
                     <Link to="/login" className='text-blue-500 hover:underline'>Already have an account? Login</Link>
-                </div>
+                </div> */}
             </div>
         </div>
     );

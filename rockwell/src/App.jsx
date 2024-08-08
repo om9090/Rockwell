@@ -16,7 +16,7 @@ const App = () => {
     <UserContextProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
-          {/* <Route path="/" element={<Navigate to="/register" replace />} /> */}
+          <Route path="/" element={<Navigate to="/register" replace />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" index element={<Register />} />
           <Route path="/home" element={<HomePage />} />

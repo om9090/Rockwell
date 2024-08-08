@@ -6,7 +6,7 @@ const IntialChatToDisplay = () => {
     return (
         <div className=''>
             <h1 className='text-2xl font-semibold'>Welcome to Echo</h1>
-            <div className="w-full flex flex-row justify-between mt-12">
+            <div className="w-full flex lg:flex-row flex-col justify-between mt-12 lg:gap-0 gap-8">
                 {iconNameArray.map((iconName, index) => (
                     <SmallInfoBox key={index} iconName={iconName} />
                 ))}
