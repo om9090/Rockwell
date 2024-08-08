@@ -29,7 +29,7 @@ const LoginPage = () => {
         console.log("Login Response:", response);
         setUserInfo(response?.data); 
         toast.success("Login Successful");
-        navigate('/');
+        navigate('/home');
       } else {
         toast.error("Login Failed"); // You can handle other cases accordingly
       }
@@ -40,9 +40,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='mx-auto h-screen p-8 flex items-start justify-center'>
-      <div className='w-full max-w-md p-8 rounded-lg bg-white shadow-md'>
-        <h1 className='text-3xl font-bold mb-6 text-gray-800'>Login</h1>
+    <div className='container p-8 flex items-start justify-center'>
+      <div className='w-full max-w-md p-6 rounded-lg bg-white border'>
+        <h1 className='text-2xl font-bold mb-6 text-gray-800'>Login</h1>
         <form className='space-y-4' onSubmit={loginUser}>
           <div>
             <label className='block text-sm font-medium text-gray-600'>
