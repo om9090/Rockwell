@@ -9,11 +9,8 @@ import { UserContext } from '../../context/UserContext';
 
 const LoginPage = () => {
   const { setUserInfo } = useContext(UserContext);
-  const [data, setData] = useState({
-    email: '',
-    password: '',
-  });
   const navigate = useNavigate();
+
   const loginUser = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -34,7 +31,7 @@ const LoginPage = () => {
         toast.error("Login Failed"); // You can handle other cases accordingly
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      console.error("Login Error:", error);
       toast.error("Login Failed");
     }
   };
@@ -53,9 +50,7 @@ const LoginPage = () => {
               name='email'
               placeholder='Enter your email'
               autoComplete="current-email"
-            //   value={data.email}
-            //   onChange={(e) => setData({ ...data, email: e.target.value })}
-              className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
+              className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-2 focus:border-blue-500'
             />
           </div>
           <div>
@@ -67,9 +62,7 @@ const LoginPage = () => {
               name='password'
               placeholder='Enter your password'
               autoComplete="current-password"
-            //   value={data.password}
-            //   onChange={(e) => setData({ ...data, password: e.target.value })}
-              className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
+              className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-2 focus:border-blue-500'
             />
           </div>
           <button
@@ -79,11 +72,6 @@ const LoginPage = () => {
             Login
           </button>
         </form>
-        <hr className='my-4 border-gray-300' />
-        <div className='flex justify-between'>
-          <Link className='text-blue-500 hover:underline'>Forgot Password?</Link>
-          <Link to="/register" className='text-blue-500 hover:underline'>Create an Account</Link>
-        </div>
       </div>
     </div>
   );
