@@ -4,11 +4,15 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { UserContext } from '../../context/UserContext'
 import { useContext } from 'react'
+import Select from 'react-select'
 
 const Register = () => {
     const { userInfo, setUserInfo } = useContext(UserContext)
     const navigate = useNavigate();
-
+    const roleOptions = [
+        { value: 'customer', label: 'Customer' },
+        { value: 'admin', label: 'Admin' },
+    ]
     const handleSubmit =async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
         const formData = new FormData(e.target); // Create a new FormData object
@@ -18,17 +22,17 @@ const Register = () => {
             password: formData.get('password'),
             role: formData.get('role'),
         }
-        try {
-            const response = await axios.post('https://rockwell-project.onrender.com/auth/signup', data);
-            if (response.status === 200) {
-                // Redirect to home page after successful registration
-                setUserInfo(response.data.response);
-                toast.success("Registered Successfully");
-                navigate('/home');
-            }
-        } catch (error) {
-            toast.error("Registration Failed"); // You can handle other cases accordingly
-        }
+        // try {
+        //     const response = await axios.post('https://rockwell-project.onrender.com/auth/signup', data);
+        //     if (response.status === 200) {
+        //         // Redirect to home page after successful registration
+        //         setUserInfo(response.data.response);
+        //         toast.success("Registered Successfully");
+        //         navigate('/home');
+        //     }
+        // } catch (error) {
+        //     toast.error("Registration Failed"); // You can handle other cases accordingly
+        // }
     }
     return (
         <div className='container p-8 flex items-start justify-center'>
@@ -44,7 +48,7 @@ const Register = () => {
                             name='name'
                             autoComplete="current-name"
                             placeholder='Enter your full name'
-                            className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
+                            className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-2 focus:border-blue-500'
                         />
                     </div>
                     <div>
@@ -56,7 +60,7 @@ const Register = () => {
                             name='email'
                             autoComplete="current-email"
                             placeholder='Enter your email'
-                            className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
+                            className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-2 focus:border-blue-500'
                         />
                     </div>
 
@@ -69,20 +73,32 @@ const Register = () => {
                             name='password'
                             placeholder='Enter your password'
                             autoComplete="current-password"
-                            className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
+                            className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:border-2 focus:border-blue-500'
                         />
                     </div>
+
+                    {/* select a role */}
+
                     <div>
                         <label className='block text-sm font-medium text-gray-600'>
                             Role
                         </label>
-                        <input
+                        <Select 
+                        styles={{
+                            control: (baseStyles, state) => ({
+                              ...baseStyles,
+                              borderColor: state.isFocused ? '' : 'grey-400',
+                            }),
+                          }}
+                        name='role'
+                        options={roleOptions} />
+                        {/* <input
                             type='text'
                             name='role'
                             autoComplete="current-role"
                             placeholder='Enter your role'
                             className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500'
-                        />
+                        /> */}
                     </div>
                     <button
                         type='submit'
