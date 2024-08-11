@@ -5,7 +5,7 @@ import axios from 'axios'
 import { UserContext } from '../../context/UserContext'
 // import ProfilePic from '../../utils/ProfilePic'
 import Search from '../Search'
-const Header = () => {
+const Header = ({setOpen, open}) => {
     const { userInfo, setUserInfo } = useContext(UserContext)
     console.log("userinfo from header",userInfo);
     // useEffect(() => {
@@ -37,8 +37,8 @@ const Header = () => {
             <div className="mx-auto py-4 px-8 max-w-screen-2xl">
                 <div className="flex justify-between">
                     <div className="flex items-center gap-4 text-gray-700">
-                        <div className="flex flex-row gap-2">
-                            {/* <Icon icon="material-symbols:wifi" className="w-8 h-8 text-blue-500" /> */}
+                        <div className="flex flex-row gap-2 items-center">
+                            <Icon icon="solar:hamburger-menu-linear" className={`mt-2`} onClick={() => setOpen(!open) }/>
                             <Link to="/" className="font-bold text-2xl">echo</Link>
                         </div>
                         {userName ? <Search /> : ""}
