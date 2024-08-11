@@ -6,7 +6,7 @@
 
 @layer components {
   .container {
-    @apply mx-auto py-8 w-full px-80 h-[500px] mt-16;
+    @apply mx-auto pt-8 w-full px-80 h-[500px] mt-16;
     font-family: "Nunito", sans-serif; /* Specify the imported font family */
   }
   .details {

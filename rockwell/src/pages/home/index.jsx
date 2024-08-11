@@ -21,7 +21,7 @@ const HomePage = () => {
 
     return (
         <div className='container w-full '>
-            <div className='p-4 rounded-lg h-full overflow-y-auto flex flex-col justify-between'>
+            <div className='px-4 pt-4 rounded-lg h-full overflow-y-auto flex flex-col justify-between'>
                 <div className="div">
 
                     {

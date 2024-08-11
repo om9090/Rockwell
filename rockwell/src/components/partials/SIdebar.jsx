@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { Icon } from '@iconify/react'
 import { Link } from 'react-router-dom';
 
-const SIdebar = () => {
-    const [open, setOpen] = useState(true);
+const SIdebar = ({openMobileView, setOpenMobileView}) => {
     const Menus = [
         { title: "Dashboard", src: "iconamoon:home-light", link: "/home" },
         { title: "Users", src: "clarity:users-line", link: "/users" },
@@ -11,16 +10,12 @@ const SIdebar = () => {
         { title: "Review ", src: "simple-line-icons:note", link: "/review" },
     ];
     return (
-        <div className="fixed left-0 h-full mt-16">
+        <div className="fixed left-0 h-full mt-16 bg-white z-9999999">
             <div
-                className={` ${open ? "w-56" : "w-20 "
+                className={` ${openMobileView ? "lg:w-56 w-72 " : "lg:w-20 w-0"
                     } bg-dark-purple p-5 border pt-4 relative duration-300 h-full`}
             >
-                <Icon icon="ant-design:right-circle-outlined"
-                    className={`absolute cursor-pointer -right-3 top-9 w-7 rounded-full bg-white text-gray-700 ${!open && "rotate-180"}`}
-                    onClick={() => setOpen(!open)}
-                    width={24}
-                />
+                
                 <ul className="">
                     {Menus.map((Menu, index) => (
                         <Link
@@ -32,7 +27,7 @@ const SIdebar = () => {
                         >
                             {/* <img src={`./src/assets/${Menu.src}.png`} /> */}
                             <Icon icon={Menu.src} width={24} className='text-gray-700' />
-                            <span className={`${!open && "hidden"} origin-left duration-200`}>
+                            <span className={`${!openMobileView && "hidden"} origin-left duration-200`}>
                                 {Menu.title}
                             </span>
                         </Link>
