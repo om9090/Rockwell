@@ -1,11 +1,13 @@
 import { Icon } from '@iconify/react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { UserContext } from '../../context/UserContext'
 // import ProfilePic from '../../utils/ProfilePic'
-import Search from '../Search'
+// import Search from '../Search'
+
 const Header = ({setOpen, open}) => {
+    const navigate = useNavigate()
     const { userInfo, setUserInfo } = useContext(UserContext)
     console.log("userinfo from header",userInfo);
     // useEffect(() => {
@@ -24,6 +26,7 @@ const Header = ({setOpen, open}) => {
     const userName = userInfo?.username
     const logout = () => {
         setUserInfo(null)
+        navigate('/login')
     //     const response = await axios.get('http://localhost:3000/logout', {
     //         withCredentials: true,
     //     })
@@ -41,12 +44,12 @@ const Header = ({setOpen, open}) => {
                             <Icon icon="solar:hamburger-menu-linear" className={`mt-2`} onClick={() => setOpen(!open) }/>
                             <Link to="/" className="font-bold text-2xl">echo</Link>
                         </div>
-                        {userName ? <Search /> : ""}
+                        {/* {userName ? <Search /> : ""} */}
                     </div>
                     <nav className="flex gap-4 text-lg font-semibold items-center">
                         {userName ? (
                             <div>
-                                <Icon icon="material-symbols-light:logout" className="w-6 h-6" onClick={logout} />
+                                <Icon icon="material-symbols-light:logout" className="w-6 h-6 cursor-pointer" onClick={logout} />
                             </div>
                         ) : (
                             <>
