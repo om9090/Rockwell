@@ -3,17 +3,17 @@ import photo from '../../../assets/photo.jpg'
 
 const ChatResponse = ({ message }) => {
     return (
-        <div className={`flex flex-row ${message.user == "user" ? "justify-end" : ""} gap-2 items-center`}>
+        <div className={`flex flex-row ${message.user == "user" ? "justify-end pl-16" : "pr-16"} gap-2 items-center`}>
             {message.user != "user" && // round image for bot
-                <div className="flex flex-row justify-start">
-                    <img src="https://i.pravatar.cc/150?img=3" alt="bot" className="w-8 h-8 rounded-full" />
+                <div className="h-8 w-8">
+                    <img src="https://i.pravatar.cc/150?img=3" className="w-full h-full aspect-square rounded-full" />
                 </div>
             }
-            <div className='bg-slate-100 rounded-xl p-2'>
+            <div className="bg-slate-100 rounded-xl p-2">
                 <p>{message.text}</p>
             </div>
             {message.user == "user" && // round image for user
-                <div className="flex flex-row justify-end">
+                <div className="h-8 w-8">
                     <img src={photo} alt="user" className="w-8 h-8 rounded-full" />
                 </div>
             }
