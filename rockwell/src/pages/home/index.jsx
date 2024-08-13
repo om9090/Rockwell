@@ -70,30 +70,30 @@ const HomePage = () => {
             ))
           )}
         </div>
-        <form onSubmit={handleSubmit} className="mt-4 flex items-center">
-          {user ? (
-            <>
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
-                className="p-2 w-full border border-gray-300 rounded-md focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="ml-2 p-2 text-blue-500 focus:outline-none"
-              >
-                <Icon icon="fluent:send-28-filled" height="24" />
-              </button>
-            </>
-          ) : (
-            <span className="text-red-500 text-xl font-bold">
-              Please login to continue further
-            </span>
-          )}
-        </form>
       </div>
+      <form onSubmit={handleSubmit} className="mt-4 flex items-center">
+        {user ? (
+          <>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+              className="p-2 w-full border border-gray-300 rounded-md focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="ml-2 p-2 text-blue-500 focus:outline-none"
+            >
+              <Icon icon="fluent:send-28-filled" height="24" />
+            </button>
+          </>
+        ) : (
+          <span className="text-red-500 text-xl font-bold">
+            Please login to continue further
+          </span>
+        )}
+      </form>
     </div>
   );
 };
