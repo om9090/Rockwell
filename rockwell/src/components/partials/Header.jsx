@@ -1,33 +1,17 @@
 import { Icon } from "@iconify/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
 import Tooltip from "../../utils/Tooltip";
-// import ProfilePic from '../../utils/ProfilePic'
-// import Search from '../Search'
 
-const Header = ({ setOpen, open }) => {
+const Header = ({ setOpen, open, isLogged }) => {
   const navigate = useNavigate();
   const { userInfo, setUserInfo } = useContext(UserContext);
-  // useEffect(() => {
-  //     const getProfile = async () => {
-  //         const response = await axios.get('http://localhost:3000/profile', {
-  //             withCredentials: true,
-  //         })
-  //         if (response.status === 200) {
-  //             setUserInfo(response?.data?.user)
-  //         }
-  //     }
-  //     getProfile()
-
-  // }, [])
 
   const userName = userInfo?.username;
   const logout = async () => {
-    // setUserInfo(null)
-    // navigate('/login')
     const response = await axios.get(
       "https://rockwell-project.onrender.com/auth/logout",
       {
@@ -39,7 +23,7 @@ const Header = ({ setOpen, open }) => {
       setUserInfo(null);
       // set messages to empty
       localStorage.removeItem("messages");
-      window.location.reload();
+      navigate("/");
       toast.success("Logout Successful");
     } else {
       toast.error("Logout Failed");
@@ -50,7 +34,7 @@ const Header = ({ setOpen, open }) => {
     localStorage.removeItem("messages");
     window.location.reload();
   }
-  //http://localhost:8000
+
   return (
     <header className="fixed top-0 w-full bg-white border-b-[1px] z-10">
       <div className="mx-auto py-4 px-8 max-w-screen-2xl">
@@ -59,10 +43,10 @@ const Header = ({ setOpen, open }) => {
             <div className="flex flex-row gap-2 items-center">
               <Icon
                 icon="solar:hamburger-menu-linear"
-                className={`mt-2`}
+                className={`mt-2 ${isLogged ? "block" : "hidden"} w-6 h-6 cursor-pointer`}
                 onClick={() => setOpen(!open)}
               />
-              <Link to="/home" className="font-bold text-2xl">
+              <Link to="/auth/home" className="font-bold text-2xl">
                 echo
               </Link>
             </div>

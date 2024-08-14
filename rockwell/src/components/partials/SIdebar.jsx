@@ -7,16 +7,16 @@ const Sidebar = ({ openMobileView, setOpenMobileView }) => {
     const { userInfo } = useContext(UserContext); 
 
     const menuAdmin = [
-        { title: "Dashboard", src: "iconamoon:home-light", link: "/home" },
-        { title: "Users", src: "clarity:users-line", link: "/users" },
-        { title: "Department", src: "bi:boxes", link: "/department" },
-        { title: "Review", src: "tabler:message", link: "/review" },
+        { title: "Dashboard", src: "iconamoon:home-light", link: "/auth/home" },
+        { title: "Users", src: "clarity:users-line", link: "/auth/users" },
+        { title: "Department", src: "bi:boxes", link: "/auth/department" },
+        { title: "Review", src: "tabler:message", link: "/auth/review" },
     ];
 
     const menuCustomer = [
-        { title: "Dashboard", src: "iconamoon:home-light", link: "/home" },
+        { title: "Dashboard", src: "iconamoon:home-light", link: "/auth/home" },
         // { title: "History", src: "iconamoon:history-light", link: "/history" },
-        { title: "Summary", src: "fluent:notepad-edit-16-regular", link: "/summary" },
+        { title: "Summary", src: "fluent:notepad-edit-16-regular", link: "/auth/summary" },
     ];
 
     const menu = userInfo?.role === 'customer' ? menuCustomer : menuAdmin;

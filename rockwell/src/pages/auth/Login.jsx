@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 // import echo1 from "../../assets/echo1.jpeg";
-import loginImg from "../../assets/login.png";
+import loginImg from "../../assets/login2.png";
 
 const LoginPage = () => {
   const { setUserInfo } = useContext(UserContext);
@@ -37,18 +37,18 @@ const LoginPage = () => {
     }
     console.log("Login Response:", response);
     if (response.status === 200 && response.data?.email != null) {
-      setUserInfo(response?.data);
+      setUserInfo(response?.data);  
       toast.success("Login Successful");
-      window.location.reload();
-      // navigate("/home");
+      // window.location.reload();
+      navigate("/auth/home");
     } else {
       toast.error(response.data.error); // You can handle other cases accordingly
     }
   };
 
   return (
-    <div className="grid grid-cols-2 h-[600px]">
-      <div className="col-span-1">
+    <div className="grid grid-cols-2">
+      <div className="col-span-1 h-[580px]">
         <img
           src={loginImg}
           alt="background"
