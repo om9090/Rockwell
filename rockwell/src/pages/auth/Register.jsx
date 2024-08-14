@@ -24,7 +24,7 @@ const Register = () => {
       role: formData.get("role"),
     };
     const response = await axios.post(
-      "https://rockwell-project.onrender.com/auth/signup",
+      "http://localhost:8000/auth/signup",
       data,
       { withCredentials: true, credentials: "include" }
     );
@@ -32,7 +32,7 @@ const Register = () => {
     if (response.status === 200) {
       // Redirect to home page after successful registration
       setUserInfo(response.data.response);
-      navigate("/home");
+      window.location.reload();
       toast.success("Registered Successfully");
     } else {
       toast.error("Registration Failed");

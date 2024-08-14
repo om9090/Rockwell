@@ -22,7 +22,7 @@ const LoginPage = () => {
       //http://localhost:8000/auth/login
       //https://rockwell-project.onrender.com
       response = await axios.post(
-        "https://rockwell-project.onrender.com/auth/login",
+        "http://localhost:8000/auth/login",
         {
           email: formData.get("email"),
           password: formData.get("password"),
@@ -38,7 +38,7 @@ const LoginPage = () => {
     console.log("Login Response:", response);
     if (response.status === 200 && response.data?.email != null) {
       setUserInfo(response?.data);
-      window.location.reload();
+      window.location.replace("/home");
       toast.success("Login Successful");
     } else {
       toast.error(response.data.error); // You can handle other cases accordingly

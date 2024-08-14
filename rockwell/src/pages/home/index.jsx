@@ -21,14 +21,14 @@ const HomePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-
-    const newMessages = [...messages, { text: input, user: "user" }];
-
+    let userquery = input;
+    const newMessages = [...messages, { text: userquery, user: "user" }];
+    setInput("");
     setMessages(newMessages);
 
     try {
       const response = await axios.post(
-        "https://rockwell-project.onrender.com/api/postquery",
+        "http://localhost:8000/api/postquery",
         { query: input },
         {
           headers: { "Content-Type": "application/json" },

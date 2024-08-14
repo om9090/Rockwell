@@ -22,18 +22,19 @@ const Header = ({ setOpen, open }) => {
   //     getProfile()
 
   // }, [])
+  const clearchat = () => {
+    localStorage.removeItem("messages");
+    window.location.reload();
+  };
 
   const userName = userInfo?.username;
   const logout = async () => {
     // setUserInfo(null)
     // navigate('/login')
-    const response = await axios.get(
-      "https://rockwell-project.onrender.com/auth/logout",
-      {
-        withCredentials: true,
-        credentials: "include",
-      }
-    );
+    const response = await axios.get("http://localhost:8000/auth/logout", {
+      withCredentials: true,
+      credentials: "include",
+    });
     if (response.status === 200) {
       setUserInfo(null);
       window.location.reload();
@@ -43,6 +44,7 @@ const Header = ({ setOpen, open }) => {
     }
   };
   //http://localhost:8000
+  //https://rockwell-project.onrender.com
   return (
     <header className="fixed top-0 w-full bg-white border-b-[1px] z-10">
       <div className="mx-auto py-4 px-8 max-w-screen-2xl">
@@ -61,6 +63,12 @@ const Header = ({ setOpen, open }) => {
             {/* {userName ? <Search /> : ""} */}
           </div>
           <nav className="flex gap-4 text-lg font-semibold items-center">
+            <button
+              className=" bg-slate-200 p-2 rounded-lg text-sm shadow-md hover:scale-105 transition-transform"
+              onClick={clearchat}
+            >
+              Clearchat
+            </button>
             {userName ? (
               <div>
                 <Icon
