@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
 import Select from "react-select";
-import registerImg from "../../assets/echo3.jpg";
+import registerImg from "../../assets/signup.png";
 
 const Register = () => {
   const { userInfo, setUserInfo } = useContext(UserContext);
@@ -41,12 +41,12 @@ const Register = () => {
   };
   console.log("userInfo from register", userInfo);
   return (
-    <div className="grid grid-cols-2 h-[605px]">
-      <div className="col-span-1">
+    <div className="grid grid-cols-2">
+      <div className="col-span-1 h-[590px]">
         <img
           src={registerImg}
           alt="background"
-          className=" w-full h-full object-cover"
+          className="aspect-square object-cover w-full h-full"
         />
       </div>
       <div className="p-8 flex items-center justify-center">
