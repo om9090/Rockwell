@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
+import Tooltip from "../../utils/Tooltip";
 // import ProfilePic from '../../utils/ProfilePic'
 // import Search from '../Search'
 
@@ -36,12 +37,19 @@ const Header = ({ setOpen, open }) => {
     );
     if (response.status === 200) {
       setUserInfo(null);
+      // set messages to empty
+      localStorage.removeItem("messages");
       window.location.reload();
       toast.success("Logout Successful");
     } else {
       toast.error("Logout Failed");
     }
   };
+
+  const clearChat = () => {
+    localStorage.removeItem("messages");
+    window.location.reload();
+  }
   //http://localhost:8000
   return (
     <header className="fixed top-0 w-full bg-white border-b-[1px] z-10">
@@ -54,7 +62,7 @@ const Header = ({ setOpen, open }) => {
                 className={`mt-2`}
                 onClick={() => setOpen(!open)}
               />
-              <Link to="/" className="font-bold text-2xl">
+              <Link to="/home" className="font-bold text-2xl">
                 echo
               </Link>
             </div>
@@ -62,12 +70,19 @@ const Header = ({ setOpen, open }) => {
           </div>
           <nav className="flex gap-4 text-lg font-semibold items-center">
             {userName ? (
-              <div>
-                <Icon
-                  icon="material-symbols-light:logout"
-                  className="w-6 h-6 cursor-pointer"
-                  onClick={logout}
-                />
+              <div className="flex flex-row gap-4">
+                <Tooltip content="New Chat">
+                  <Icon icon="jam:write"
+                    className="w-6 h-6 cursor-pointer"
+                    onClick={clearChat}
+                  />
+                </Tooltip>
+                <Tooltip content="Logout">
+                  <Icon icon="material-symbols:logout"
+                    className="w-6 h-6 cursor-pointer"
+                    onClick={logout}
+                  />
+                </Tooltip>
               </div>
             ) : (
               <>

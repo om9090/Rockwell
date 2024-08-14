@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import IntialChatToDisplay from "./components/IntialChatToDisplay";
 import ChatResponse from "./components/ChatResponse";
 import axios from "axios";
+import Tooltip from "../../utils/Tooltip";
 
 const HomePage = () => {
   const [input, setInput] = useState("");
@@ -81,12 +82,14 @@ const HomePage = () => {
               placeholder="Type your message..."
               className="p-2 w-full border border-gray-300 rounded-md focus:outline-none"
             />
-            <button
-              type="submit"
-              className="ml-2 p-2 text-blue-500 focus:outline-none"
-            >
-              <Icon icon="fluent:send-28-filled" height="24" />
-            </button>
+            <Tooltip content="Send">
+              <button
+                type="submit"
+                className="ml-2 p-2 text-blue-500 focus:outline-none"
+              >
+                <Icon icon="fluent:send-28-filled" height="24" />
+              </button>
+            </Tooltip>
           </>
         ) : (
           <span className="text-red-500 text-xl font-bold">
