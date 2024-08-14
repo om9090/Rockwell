@@ -36,6 +36,7 @@ const Register = () => {
       navigate("/auth/home");
       toast.success("Registered Successfully", {
         duration: 4000,
+        // position: "top-right",
       });
     } else {
       toast.error("Registration Failed");
