@@ -9,9 +9,9 @@ const Layout = () => {
     return (
         <div className="flex flex-col h-full">
             <Header setOpen = {setOpen} open={open}/>
-            <div className="h-full">
+            {/* <div className="h-full"> */}
                 <SIdebar openMobileView={open} setOpenMobileView={setOpen}/>
-            </div>
+            {/* </div> */}
             <Toaster position="top-center" />
             <Outlet />
         </div>

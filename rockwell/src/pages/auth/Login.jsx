@@ -38,8 +38,9 @@ const LoginPage = () => {
     console.log("Login Response:", response);
     if (response.status === 200 && response.data?.email != null) {
       setUserInfo(response?.data);
-      window.location.reload();
       toast.success("Login Successful");
+      window.location.reload();
+      // navigate("/home");
     } else {
       toast.error(response.data.error); // You can handle other cases accordingly
     }

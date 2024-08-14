@@ -32,7 +32,8 @@ const Register = () => {
     if (response.status === 200) {
       // Redirect to home page after successful registration
       setUserInfo(response.data.response);
-      navigate("/home");
+      window.location.reload();
+      // navigate("/home");
       toast.success("Registered Successfully");
     } else {
       toast.error("Registration Failed");

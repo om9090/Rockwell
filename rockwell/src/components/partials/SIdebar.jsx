@@ -10,16 +10,17 @@ const Sidebar = ({ openMobileView, setOpenMobileView }) => {
         { title: "Dashboard", src: "iconamoon:home-light", link: "/home" },
         { title: "Users", src: "clarity:users-line", link: "/users" },
         { title: "Department", src: "bi:boxes", link: "/department" },
-        { title: "Review", src: "simple-line-icons:note", link: "/review" },
+        { title: "Review", src: "tabler:message", link: "/review" },
     ];
 
     const menuCustomer = [
         { title: "Dashboard", src: "iconamoon:home-light", link: "/home" },
-        { title: "History", src: "iconamoon:history-light", link: "/history" },
+        // { title: "History", src: "iconamoon:history-light", link: "/history" },
+        { title: "Summary", src: "fluent:notepad-edit-16-regular", link: "/summary" },
     ];
 
-    // const menu = userInfo?.role === 'customer' ? menuCustomer : menuAdmin;
-    const menu = menuAdmin;
+    const menu = userInfo?.role === 'customer' ? menuCustomer : menuAdmin;
+    // const menu = menuAdmin;
     return (
         <div className="fixed left-0 h-full mt-16 bg-white z-9999999">
             <div
